@@ -21,7 +21,7 @@ const AnimatedCounter = ({ value, suffix = "", prefix = "" }: { value: number; s
   useEffect(() => {
     return springValue.on("change", (latest) => {
       if (ref.current) {
-        ref.current.textContent = `${prefix}${Intl.NumberFormat("pt-BR").format(latest.toFixed(0))}${suffix}`;
+        ref.current.textContent = `${prefix}${new Intl.NumberFormat("pt-BR").format(Math.round(latest))}${suffix}`;
       }
     });
   }, [springValue, prefix, suffix]);
@@ -96,7 +96,6 @@ const StatsSection = () => {
       scale: 1,
       transition: {
         duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
@@ -200,41 +199,6 @@ const StatsSection = () => {
             ✨ <span className="font-semibold text-foreground">Estes resultados podem ser seus</span> • Continue lendo
           </p>
         </motion.div>
-      </div>
-    </section>
-  );
-};
-
-export default StatsSection;
-
-  return (
-    <section className="bg-secondary py-16 md:py-24">
-      <div className="container mx-auto px-4">
-        {/* Title */}
-        <h2 className="mb-12 text-center text-3xl font-bold text-white md:text-4xl">
-          📊 OS NÚMEROS NÃO MENTEM
-        </h2>
-
-        {/* Stats Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="group rounded-xl bg-card p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                <stat.icon className="h-7 w-7 text-primary" />
-              </div>
-              <div className="text-3xl font-bold text-green-800">{stat.value}</div>
-              {stat.sublabel && (
-                <div className="mt-1 text-xs font-medium uppercase tracking-wide text-green-800">
-                  {stat.sublabel}
-                </div>
-              )}
-              <p className="mt-2 text-sm text-black">{stat.label}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

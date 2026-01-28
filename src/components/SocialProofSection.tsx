@@ -80,7 +80,6 @@ const SocialProofSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
@@ -259,65 +258,6 @@ const SocialProofSection = () => {
             </Button>
           </a>
         </motion.div>
-      </div>
-    </section>
-  );
-};
-
-export default SocialProofSection;
-
-  return (
-    <section className="bg-gray-100 py-16 md:py-24">
-      <div className="container mx-auto px-4">
-        {/* Section Title */}
-        <h2 className="mb-12 text-center text-3xl font-bold text-foreground md:mb-16 md:text-4xl lg:text-5xl">
-          RESULTADOS REAIS DE ESCRITÓRIOS QUE AUTOMATIZARAM O ATENDIMENTO
-        </h2>
-
-        {/* Testimonials Grid */}
-        <div className="mb-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="flex flex-col rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-8"
-            >
-              {/* Quote Icon */}
-              <div className="mb-4 text-5xl">💬</div>
-
-              {/* Testimonial Text */}
-              <p className="mb-6 flex-grow text-base leading-relaxed text-gray-700 md:text-lg">
-                "{testimonial.text}"
-              </p>
-
-              {/* Author Info */}
-              <div className="border-t border-gray-200 pt-4">
-                <p className="font-bold text-gray-900">{testimonial.name}</p>
-                <p className="text-sm text-gray-600">{testimonial.location}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Proven Numbers Section */}
-        <div className="mx-auto max-w-5xl">
-          <h3 className="mb-8 text-center text-2xl font-bold text-foreground md:text-3xl">
-            📊 NÚMEROS QUE COMPROVAM
-          </h3>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="rounded-xl bg-white p-6 text-center shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-              >
-                <div className="mb-3 text-4xl">{stat.emoji}</div>
-                <p className="text-sm font-semibold text-gray-800 md:text-base">
-                  {stat.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
