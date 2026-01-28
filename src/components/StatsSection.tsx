@@ -34,7 +34,7 @@ const StatsSection = () => {
     <section className="bg-secondary py-16 md:py-24">
       <div className="container mx-auto px-4">
         {/* Title */}
-        <h2 className="mb-12 text-center text-3xl font-bold text-foreground md:text-4xl">
+        <h2 className="mb-12 text-center text-3xl font-bold text-white md:text-4xl">
           📊 OS NÚMEROS NÃO MENTEM
         </h2>
 
@@ -48,13 +48,13 @@ const StatsSection = () => {
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                 <stat.icon className="h-7 w-7 text-primary" />
               </div>
-              <div className="text-3xl font-bold text-accent">{stat.value}</div>
+              <div className="text-3xl font-bold text-green-800">{stat.value}</div>
               {stat.sublabel && (
-                <div className="mt-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                <div className="mt-1 text-xs font-medium uppercase tracking-wide text-green-800">
                   {stat.sublabel}
                 </div>
               )}
-              <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
+              <p className="mt-2 text-sm text-black">{stat.label}</p>
             </div>
           ))}
         </div>

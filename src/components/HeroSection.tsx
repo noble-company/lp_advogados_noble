@@ -13,7 +13,7 @@ const HeroSection = () => {
   const benefits = [
     "Setup em 7 dias (feito 100% por nós)",
     "Primeiros resultados em 30 dias",
-    "Garantia incondicional de 60 dias + R$ 1.000 se não funcionar",
+    "Garantia incondicional de 60 dias",
   ];
 
   return (
@@ -31,7 +31,7 @@ const HeroSection = () => {
         <div className="flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 backdrop-blur-sm border border-primary-foreground/20">
           <Shield className="h-5 w-5 text-success" />
           <span className="text-sm font-semibold text-primary-foreground">
-            Garantia 60 dias + R$ 1.000
+            Garantia 60 dias
           </span>
         </div>
       </div>
@@ -41,11 +41,11 @@ const HeroSection = () => {
           {/* Left Column - Content */}
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             {/* Headline */}
-            <h1 className="opacity-0 animate-fade-in-up text-3xl font-bold leading-tight tracking-tight text-primary-foreground sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl">
+            <h1 className="opacity-0 animate-fade-in-up text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl">
               Como Captar{" "}
-              <span className="text-accent">3-5 Novos Clientes</span>{" "}
+              <span className="text-green-800">3-5 Novos Clientes</span>{" "}
               Jurídicos Por Mês No Automático em{" "}
-              <span className="text-accent">30 Dias</span>
+              <span className="text-green-800">30 Dias</span>
             </h1>
 
             {/* Subheadline */}
@@ -75,7 +75,7 @@ const HeroSection = () => {
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 <Button 
                   size="lg" 
-                  className="group h-14 animate-pulse-glow bg-cta px-8 text-lg font-bold text-cta-foreground shadow-lg transition-all hover:bg-cta/90 hover:scale-105"
+                  className="group h-14 animate-pulse-glow bg-green-800 px-8 text-lg font-bold text-white shadow-lg transition-all hover:bg-green-700 hover:scale-105"
                 >
                   QUERO CAPTAR MAIS CLIENTES
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
