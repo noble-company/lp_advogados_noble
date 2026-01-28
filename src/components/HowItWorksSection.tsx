@@ -2,10 +2,9 @@ import { ArrowDown, MessageCircle, Zap, Brain, Calendar, Bell, User, Briefcase, 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
-// Noble Company WhatsApp Configuration
 const WHATSAPP_NUMBER = "553591101380";
 const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Olá Noble Company! Quero entender melhor como o processo funciona do início ao fim. Pode me explicar?"
+  "Olá Noble Company! Quero entender melhor como o processo funciona. Pode me explicar?"
 );
 
 const HowItWorksSection = () => {
@@ -91,21 +90,19 @@ const HowItWorksSection = () => {
       transition: {
         delay: i * 0.15,
         duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as any,
       },
     }),
   };
 
   return (
     <section className="relative bg-noble-gradient py-20 md:py-32 overflow-hidden">
-      {/* Decorative Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 h-96 w-96 rounded-full bg-accent blur-3xl animate-pulse" />
         <div className="absolute bottom-20 right-20 h-96 w-96 rounded-full bg-success blur-3xl animate-pulse" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4">
-        {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +124,6 @@ const HowItWorksSection = () => {
           </p>
         </motion.div>
 
-        {/* Client Side */}
         <div className="mb-20">
           <motion.h3
             initial={{ opacity: 0 }}
@@ -143,7 +139,6 @@ const HowItWorksSection = () => {
               const Icon = step.icon;
               return (
                 <div key={index}>
-                  {/* Step Card */}
                   <motion.div
                     custom={index}
                     variants={stepVariants}
@@ -154,13 +149,11 @@ const HowItWorksSection = () => {
                     className="group rounded-2xl bg-card border-2 border-border p-6 shadow-xl hover:border-success/50 hover:shadow-2xl transition-all duration-300 md:p-8"
                   >
                     <div className="flex items-start gap-4">
-                      {/* Icon */}
                       <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl ${step.bgColor} group-hover:scale-110 transition-transform`}>
                         <Icon className={`h-7 w-7 ${step.color}`} />
                       </div>
 
                       <div className="flex-1">
-                        {/* Title */}
                         <div className="mb-2 flex items-center gap-3">
                           <span className={`text-3xl font-black ${step.color}`}>
                             {step.number}
@@ -169,7 +162,6 @@ const HowItWorksSection = () => {
                             {step.title}
                           </h4>
                         </div>
-                        {/* Example */}
                         <p className="text-base italic text-muted-foreground leading-relaxed md:text-lg">
                           {step.example}
                         </p>
@@ -177,7 +169,6 @@ const HowItWorksSection = () => {
                     </div>
                   </motion.div>
 
-                  {/* Arrow Between Steps */}
                   {index < clientSteps.length - 1 && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0 }}
@@ -197,7 +188,6 @@ const HowItWorksSection = () => {
           </div>
         </div>
 
-        {/* Divider */}
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -206,7 +196,6 @@ const HowItWorksSection = () => {
           className="mx-auto mb-20 h-1 w-full max-w-4xl bg-gradient-to-r from-transparent via-accent to-transparent"
         />
 
-        {/* Lawyer Side */}
         <div className="mb-16">
           <motion.h3
             initial={{ opacity: 0 }}
@@ -222,7 +211,6 @@ const HowItWorksSection = () => {
               const Icon = step.icon;
               return (
                 <div key={index}>
-                  {/* Step Card */}
                   <motion.div
                     custom={index}
                     variants={stepVariants}
@@ -233,8 +221,46 @@ const HowItWorksSection = () => {
                     className="group rounded-2xl bg-card border-2 border-border p-6 shadow-xl hover:border-warning/50 hover:shadow-2xl transition-all duration-300 md:p-8"
                   >
                     <div className="flex items-start gap-4">
-                      {/* Icon */}
-         motion.div
+                      <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl ${step.bgColor} group-hover:scale-110 transition-transform`}>
+                        <Icon className={`h-7 w-7 ${step.color}`} />
+                      </div>
+
+                      <div className="flex-1">
+                        <div className="mb-2 flex items-center gap-3">
+                          <span className={`text-3xl font-black ${step.color}`}>
+                            {step.number}
+                          </span>
+                          <h4 className="text-xl font-bold text-foreground md:text-2xl">
+                            {step.title}
+                          </h4>
+                        </div>
+                        <p className="text-base text-muted-foreground leading-relaxed md:text-lg">
+                          {step.example}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {index < lawyerSteps.length - 1 && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.15 + 0.3 }}
+                      className="flex justify-center py-6"
+                    >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-warning/20 backdrop-blur-sm">
+                        <ArrowDown className="h-6 w-6 text-warning animate-bounce-subtle" />
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -262,50 +288,7 @@ const HowItWorksSection = () => {
               QUERO ESSE PROCESSO NO MEU ESCRITÓRIO
             </Button>
           </a>
-        </motion.                </span>
-                          <h4 className="text-xl font-bold text-foreground md:text-2xl">
-                            {step.title}
-                          </h4>
-                        </div>
-                        {/* Example */}
-                        <p className="text-base text-muted-foreground leading-relaxed md:text-lg">
-                          {step.example}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Arrow Between Steps */}
-                  {index < lawyerSteps.length - 1 && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.15 + 0.3 }}
-                      className="flex justify-center py-6"
-                    >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-warning/20 backdrop-blur-sm">
-                        <ArrowDown className="h-6 w-6 text-warning animate-bounce-subtle" />
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Final Highlight Box */}
-        <div className="mx-auto max-w-3xl rounded-2xl bg-gradient-to-r from-orange-500 to-orange-600 p-8 text-center shadow-2xl md:p-10">
-          <div className="mb-4 text-5xl md:text-6xl">⏱️</div>
-          <h3 className="mb-4 text-3xl font-bold text-white md:text-4xl">
-            TEMPO TOTAL QUE VOCÊ GASTA: ZERO
-          </h3>
-          <p className="text-xl font-semibold text-white md:text-2xl">
-            O sistema faz TODO o trabalho pesado. Você só aparece para a parte
-            boa: fechar o cliente.
-          </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
