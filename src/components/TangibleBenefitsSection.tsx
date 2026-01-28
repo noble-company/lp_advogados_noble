@@ -1,163 +1,248 @@
-import { ArrowRight } from "lucide-react";
+import { TrendingUp, Clock, DollarSign, Sparkles, Target, CheckCircle2, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+
+const WHATSAPP_NUMBER = "553591101380";
+const WHATSAPP_MESSAGE = encodeURIComponent(
+  "Olá Noble Company! Vi os resultados tangíveis que o sistema entrega. Quero saber como implementar!"
+);
 
 const TangibleBenefitsSection = () => {
   const benefits = [
     {
-      emoji: "📈",
-      title: "MAIS CLIENTES (3-5 NOVOS/MÊS)",
+      icon: TrendingUp,
+      title: "MAIS CLIENTES",
       items: [
-        "Converta 30-50% mais leads que já te procuram",
-        "Capture clientes que antes eram perdidos por demora",
-        "Atenda leads que chegam fora do horário comercial",
-        "Aumente seu faturamento em R$ 15-50k/mês",
+        "Taxa de conversão sobe 40-60%",
+        "Cada lead vira oportunidade real",
+        "Qualificação automática = menos perda",
       ],
+      color: "text-success",
+      bgColor: "bg-success/10",
     },
     {
-      emoji: "⏰",
-      title: "MAIS TEMPO (10-15 HORAS/SEMANA RECUPERADAS)",
+      icon: Clock,
+      title: "MAIS TEMPO",
       items: [
-        "Pare de gastar 70% do dia com atendimento básico",
-        "Foque em advogar e fechar casos de alto valor",
-        "Recupere suas noites e fins de semana",
-        "Delegue 100% do atendimento inicial para a IA",
+        "15-20h/semana economizadas",
+        "Zero tempo em WhatsApp",
+        "Fim das ligações perdidas",
       ],
+      color: "text-secondary",
+      bgColor: "bg-secondary/10",
     },
     {
-      emoji: "💰",
-      title: "MAIS LUCRO (SEM AUMENTAR CUSTOS)",
+      icon: DollarSign,
+      title: "MAIS LUCRO",
       items: [
-        "Economize R$ 3-5k/mês que gastaria com atendente",
-        "Sem CLT, sem férias, sem 13º, sem encargos",
-        "ROI positivo já no primeiro cliente captado",
-        "Margem de lucro aumenta sem contratar ninguém",
+        "+R$ 50-150k faturamento/ano",
+        "Sem contratar SDR/recepcionista",
+        "ROI positivo em 30-45 dias",
       ],
+      color: "text-accent",
+      bgColor: "bg-accent/10",
     },
     {
-      emoji: "😌",
-      title: "MAIS TRANQUILIDADE (ZERO PREOCUPAÇÃO)",
+      icon: Sparkles,
+      title: "MAIS PREVISIBILIDADE",
       items: [
-        "Nunca mais perca clientes por demora",
-        "Durma sabendo que nenhum lead fica sem resposta",
-        "Viaje sem se preocupar com o WhatsApp",
-        "Sistema funciona 24/7 mesmo quando você não está",
+        "Agenda sempre cheia",
+        "Pipeline organizado",
+        "Dados claros de performance",
       ],
+      color: "text-warning",
+      bgColor: "bg-warning/10",
     },
     {
-      emoji: "🎯",
-      title: "MAIS QUALIDADE (SÓ LEADS BONS)",
+      icon: Target,
+      title: "MAIS FOCO",
       items: [
-        "Pare de perder tempo com curiosos e \"tire-dúvidas\"",
-        "Receba apenas leads pré-qualificados prontos para fechar",
-        "Aumente sua taxa de conversão em consultas",
-        "Foque energia em casos que realmente valem a pena",
+        "Você só atende leads qualificados",
+        "Fim do retrabalho",
+        "Mais estratégia, menos operacional",
       ],
+      color: "text-primary",
+      bgColor: "bg-primary/10",
     },
   ];
 
   const beforeData = [
-    "20 leads/mês no WhatsApp",
-    "8 leads respondidos (40% perdidos por demora)",
-    "2 leads convertidos (25% de conversão)",
-    "Faturamento: R$ 20.000/mês",
-    "Tempo gasto: 15h/semana no WhatsApp",
+    { label: "Conversão", value: "5-10%", color: "text-destructive" },
+    { label: "Tempo/Lead", value: "45min", color: "text-destructive" },
+    { label: "Leads Perdidos", value: "60-70%", color: "text-destructive" },
+    { label: "Custo Operacional", value: "Alto", color: "text-destructive" },
   ];
 
   const afterData = [
-    "20 leads/mês no WhatsApp",
-    "20 leads respondidos (0% perdidos)",
-    "7 leads convertidos (35% de conversão)",
-    "Faturamento: R$ 55.000/mês (+R$ 35k)",
-    "Tempo gasto: 0h/semana no WhatsApp",
+    { label: "Conversão", value: "40-60%", color: "text-success" },
+    { label: "Tempo/Lead", value: "0min", color: "text-success" },
+    { label: "Leads Perdidos", value: "5-10%", color: "text-success" },
+    { label: "Custo Operacional", value: "Mínimo", color: "text-success" },
   ];
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1] as any,
+      },
+    }),
+  };
+
   return (
-    <section className="bg-background py-16 md:py-24">
-      <div className="container mx-auto px-4">
-        {/* Section Title */}
-        <h2 className="mb-12 text-center text-3xl font-bold text-foreground md:mb-16 md:text-4xl lg:text-5xl">
-          O QUE ISSO SIGNIFICA PARA O SEU ESCRITÓRIO
-        </h2>
+    <section className="relative bg-background py-20 md:py-32 overflow-hidden">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-40 right-20 h-80 w-80 rounded-full bg-success blur-3xl" />
+        <div className="absolute bottom-40 left-20 h-80 w-80 rounded-full bg-accent blur-3xl" />
+      </div>
 
-        {/* Benefits Cards */}
-        <div className="mb-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className="rounded-xl border border-gray-200 bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-8"
-            >
-              {/* Emoji */}
-              <div className="mb-4 text-5xl">{benefit.emoji}</div>
+      <div className="container relative z-10 mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 text-center"
+        >
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-success/10 border border-success/20 px-4 py-2">
+            <Sparkles className="h-4 w-4 text-success" />
+            <span className="text-sm font-bold text-success uppercase tracking-wide">
+              Resultados Reais
+            </span>
+          </div>
+          <h2 className="text-4xl font-bold text-foreground md:text-5xl lg:text-6xl">
+            💎 Benefícios <span className="text-gradient-noble">Tangíveis & Mensuráveis</span>
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground md:text-xl max-w-3xl mx-auto">
+            Não é teoria. São resultados que você vai ver na conta bancária.
+          </p>
+        </motion.div>
 
-              {/* Title */}
-              <h3 className="mb-4 text-xl font-bold text-gray-800">
-                {benefit.title}
-              </h3>
-
-              {/* Items List */}
-              <div className="space-y-2">
-                {benefit.items.map((item, itemIndex) => (
-                  <div key={itemIndex} className="flex items-start gap-2">
-                    <ArrowRight className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
-                    <p className="text-sm text-gray-700">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+        <div className="mb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {benefits.map((benefit, index) => {
+            const Icon = benefit.icon;
+            return (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                whileHover={{ y: -10 }}
+                className="group rounded-2xl bg-card border-2 border-border p-6 shadow-lg hover:border-accent/50 hover:shadow-2xl transition-all duration-300"
+              >
+                <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl ${benefit.bgColor} group-hover:scale-110 transition-transform`}>
+                  <Icon className={`h-7 w-7 ${benefit.color}`} />
+                </div>
+                <h3 className={`mb-4 text-2xl font-black ${benefit.color}`}>
+                  {benefit.title}
+                </h3>
+                <ul className="space-y-2">
+                  {benefit.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-success" />
+                      <span className="text-base text-muted-foreground leading-relaxed">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Before/After Comparison */}
-        <div className="mb-8">
-          <h3 className="mb-8 text-center text-2xl font-bold text-foreground md:text-3xl">
-            EXEMPLO REAL
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <h3 className="mb-10 text-center text-3xl font-bold text-foreground md:text-4xl">
+            ⚖️ Antes vs Depois <span className="text-accent">(Comparação Real)</span>
           </h3>
 
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
-            {/* Before Box */}
-            <div className="rounded-xl bg-red-50 p-6 shadow-lg md:p-8">
-              <h4 className="mb-4 text-center text-xl font-bold text-red-800 md:text-2xl">
-                ANTES DO SISTEMA:
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="rounded-2xl bg-gradient-to-br from-destructive/10 to-destructive/5 border-2 border-destructive/30 p-8 shadow-xl"
+            >
+              <h4 className="mb-6 text-center text-2xl font-black text-destructive">
+                ❌ SEM O SISTEMA
               </h4>
-              <ul className="space-y-3">
+              <div className="space-y-4">
                 {beforeData.map((item, index) => (
-                  <li
+                  <div
                     key={index}
-                    className="flex items-start gap-2 text-gray-800"
+                    className="flex items-center justify-between rounded-lg bg-card/50 p-4"
                   >
-                    <span className="mt-1 text-red-600">•</span>
-                    <span className="font-medium">{item}</span>
-                  </li>
+                    <span className="font-semibold text-foreground">
+                      {item.label}:
+                    </span>
+                    <span className={`text-xl font-black ${item.color}`}>
+                      {item.value}
+                    </span>
+                  </div>
                 ))}
-              </ul>
-            </div>
+              </div>
+            </motion.div>
 
-            {/* After Box */}
-            <div className="rounded-xl bg-green-50 p-6 shadow-lg md:p-8">
-              <h4 className="mb-4 text-center text-xl font-bold text-green-800 md:text-2xl">
-                DEPOIS DO SISTEMA:
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="rounded-2xl bg-gradient-to-br from-success/10 to-success/5 border-2 border-success/30 p-8 shadow-xl"
+            >
+              <h4 className="mb-6 text-center text-2xl font-black text-success">
+                ✅ COM O SISTEMA
               </h4>
-              <ul className="space-y-3">
+              <div className="space-y-4">
                 {afterData.map((item, index) => (
-                  <li
+                  <div
                     key={index}
-                    className="flex items-start gap-2 text-gray-800"
+                    className="flex items-center justify-between rounded-lg bg-card/50 p-4"
                   >
-                    <span className="mt-1 text-green-600">✓</span>
-                    <span className="font-medium">{item}</span>
-                  </li>
+                    <span className="font-semibold text-foreground">
+                      {item.label}:
+                    </span>
+                    <span className={`text-xl font-black ${item.color}`}>
+                      {item.value}
+                    </span>
+                  </div>
                 ))}
-              </ul>
-            </div>
+              </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Result Text */}
-        <div className="mx-auto max-w-4xl rounded-xl bg-gradient-to-r from-primary to-primary/80 p-6 text-center shadow-xl md:p-8">
-          <p className="text-xl font-bold text-white md:text-2xl lg:text-3xl">
-            Resultado: +250% de conversão | +R$ 420k/ano | 15 horas/semana
-            recuperadas
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-4xl rounded-3xl bg-gradient-noble p-8 text-center shadow-2xl border-4 border-white/10 md:p-12"
+        >
+          <p className="text-2xl font-black text-white md:text-3xl lg:text-4xl mb-8">
+            <span className="text-success">Resultado:</span> +250% de conversão | +R$ 420k/ano | <span className="text-warning">15 horas/semana</span> recuperadas
           </p>
-        </div>
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button
+              size="lg"
+              className="btn-noble h-14 px-8 text-lg font-bold"
+            >
+              <MessageCircle className="mr-2 h-5 w-5" />
+              QUERO ESSES RESULTADOS TAMBÉM
+            </Button>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
