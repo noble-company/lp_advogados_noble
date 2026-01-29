@@ -28,10 +28,10 @@ const SocialProofSection = () => {
       rating: 5,
       result: "15h/semana economizadas",
       media: [
-        { type: "audio", url: "/legal-ai-leap/media/audios/fgAdvogados/fg_advogados_01.ogg" },
-        { type: "audio", url: "/legal-ai-leap/media/audios/fgAdvogados/fg_advogados_02.ogg" },
-        { type: "image", url: "/legal-ai-leap/media/images/fgAdvogados/fg_advogados_01.jpeg" },
-        { type: "image", url: "/legal-ai-leap/media/images/fgAdvogados/fg_advogados_02.jpeg" }
+        { type: "audio", url: "public/media/audios/fgAdvogados/fg_advogados_01.ogg" },
+        { type: "audio", url: "public/media/audios/fgAdvogados/fg_advogados_02.ogg" },
+        { type: "image", url: "public/media/images/fgAdvogados/fg_advogados_01.jpeg" },
+        { type: "image", url: "public/media/images/fgAdvogados/fg_advogados_02.jpeg" }
       ],
     },
     /*{
@@ -43,8 +43,8 @@ const SocialProofSection = () => {
       rating: 5,
       result: "+40% conversão",
       media: [
-        { type: "audio", url: "/legal-ai-leap/media/audios/dra-ana-paula.mp3" },
-        { type: "image", url: "/legal-ai-leap/media/images/dra-ana-paula-1.jpg" },
+        { type: "audio", url: "//media/audios/dra-ana-paula.mp3" },
+        { type: "image", url: "//media/images/dra-ana-paula-1.jpg" },
       ],
     },*/
     {
@@ -56,9 +56,9 @@ const SocialProofSection = () => {
       rating: 5,
       result: "6 novos clientes/mês",
       media: [
-        { type: "video", url: "/legal-ai-leap/media/videos/WA_ADV/wa_adv_01.mp4" },
-        { type: "audio", url: "/legal-ai-leap/media/audios/WA_ADV/wa_adv_01.ogg" },
-        { type: "image", url: "/legal-ai-leap/media/images/WA_ADV/wa_adv_01.png" }
+        { type: "video", url: "public/media/videos/WA_ADV/wa_adv_01.mp4" },
+        { type: "audio", url: "public/media/audios/WA_ADV/wa_adv_01.ogg" },
+        { type: "image", url: "public/media/images/WA_ADV/wa_adv_01.png" }
       ],
     },
   ];
