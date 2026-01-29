@@ -10,7 +10,7 @@ const AnimatedCounter = ({ value, suffix = "", prefix = "" }: { value: number; s
     damping: 60,
     stiffness: 100,
   });
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
     if (isInView) {
@@ -136,7 +136,7 @@ const StatsSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-5"
         >
           {stats.map((stat, index) => (

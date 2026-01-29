@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
 import { MessageCircle, HelpCircle, CheckCircle2 } from "lucide-react";
-import { WhatsAppCTAButton } from "./WhatsAppCTAButton";
+import { Button } from "@/components/ui/button";
 import { WHATSAPP_CONFIG } from "@/lib/constants";
 
 const FAQSection = () => {
@@ -126,19 +126,23 @@ const FAQSection = () => {
             <p className="mb-5 sm:mb-6 text-base sm:text-lg text-gray-100">
               Fale direto com nosso time no WhatsApp. Respondemos em minutos.
             </p>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <WhatsAppCTAButton 
-                messageKey="faq"
-                variant="default"
-                className="h-auto bg-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-bold text-noble-purple hover:bg-gray-100 md:text-xl w-full sm:w-auto"
+            <div className="w-full sm:w-auto">
+              <a
+                href={WHATSAPP_CONFIG.getLink('faq')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full sm:w-auto"
               >
-                <MessageCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                Tirar Dúvidas no WhatsApp
-              </WhatsAppCTAButton>
-            </motion.div>
+                <Button
+                  size="lg"
+                  className="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 h-16 sm:h-14 px-4 sm:px-8 text-sm sm:text-lg font-bold shadow-xl w-full sm:w-auto flex flex-wrap items-center justify-center gap-2 sm:gap-2"
+                >
+                  <MessageCircle className="h-5 w-5 sm:h-5 sm:w-5 flex-shrink-0" />
+                  <span className="hidden sm:inline">TIRAR DÚVIDAS NO WHATSAPP</span>
+                  <span className="sm:hidden text-center">TIRAR DÚVIDAS<br />NO WHATSAPP</span>
+                </Button>
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

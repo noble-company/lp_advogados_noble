@@ -20,10 +20,10 @@ export const WhatsAppCTAButton = ({
   const link = WHATSAPP_CONFIG.getLink(messageKey);
   
   const variants = {
-    default: "bg-green-800 hover:bg-green-700 text-white shadow-lg hover:scale-105",
-    hero: "bg-green-800 hover:bg-green-700 text-white shadow-lg hover:scale-105",
-    floating: "bg-green-600 hover:bg-green-700 text-white shadow-xl",
-    minimal: "bg-success hover:bg-success/90 text-white",
+    default: "bg-green-800 hover:bg-green-700 active:bg-green-900 text-white shadow-lg hover:shadow-xl",
+    hero: "bg-green-800 hover:bg-green-700 active:bg-green-900 text-white shadow-lg hover:shadow-xl",
+    floating: "bg-green-600 hover:bg-green-700 active:bg-green-800 text-white shadow-xl",
+    minimal: "bg-success hover:bg-success/90 active:bg-success/80 text-white",
   };
 
   const defaultText = {
@@ -34,14 +34,19 @@ export const WhatsAppCTAButton = ({
   };
 
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer" className="inline-block">
+    <a 
+      href={link} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="inline-block w-full sm:w-auto"
+    >
       <Button 
         size={size}
-        className={`group transition-all ${variants[variant]} ${className}`}
+        className={`group transition-all w-full sm:w-auto ${variants[variant]} ${className}`}
       >
-        {variant === "floating" && <MessageCircle className="h-5 w-5" />}
-        {children || defaultText[variant]}
-        <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+        {variant === "floating" && <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />}
+        <span className="truncate">{children || defaultText[variant]}</span>
+        <ArrowRight className="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 transition-transform group-hover:translate-x-1" />
       </Button>
     </a>
   );

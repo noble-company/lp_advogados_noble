@@ -271,19 +271,23 @@ const HowItWorksSection = () => {
             O sistema faz TODO o trabalho pesado.<br />
             Você só aparece para a parte boa: <span className="text-warning">fechar o cliente</span>.
           </p>
-          <a
-            href={WHATSAPP_CONFIG.getLink('default')}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              size="lg"
-              className="bg-white text-accent hover:bg-white/90 h-14 px-8 text-lg font-bold shadow-xl"
+          <div className="w-full sm:w-auto">
+            <a
+              href={WHATSAPP_CONFIG.getLink('default')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full sm:w-auto"
             >
-              <MessageCircle className="mr-2 h-5 w-5" />
-              QUERO ESSE PROCESSO NO MEU ESCRITÓRIO
-            </Button>
-          </a>
+              <Button
+                size="lg"
+                className="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 h-16 sm:h-14 px-4 sm:px-8 text-sm sm:text-lg font-bold shadow-xl w-full sm:w-auto flex flex-wrap items-center justify-center gap-2 sm:gap-2"
+              >
+                <MessageCircle className="h-5 w-5 sm:h-5 sm:w-5 flex-shrink-0" />
+                <span className="hidden sm:inline">QUERO ESSE PROCESSO NO MEU ESCRITÓRIO</span>
+                <span className="sm:hidden text-center">QUERO ESSE PROCESSO<br />NO MEU ESCRITÓRIO</span>
+              </Button>
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import { Shield, Lock, Award, MessageCircle, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { WhatsAppCTAButton } from "./WhatsAppCTAButton";
+import { Button } from "@/components/ui/button";
 import { WHATSAPP_CONFIG } from "@/lib/constants";
 import { createIndexedVariant } from "@/lib/animations";
 
@@ -186,14 +186,23 @@ const GuaranteesSection = () => {
             <p className="mb-4 text-xl font-semibold text-white">
               Pronto para começar sem riscos?
             </p>
-            <WhatsAppCTAButton 
-              messageKey="guarantees"
-              variant="default"
-              className="bg-success text-white hover:bg-success/90"
-            >
-              <MessageCircle className="mr-2 h-5 w-5" />
-              Falar com Especialista no WhatsApp
-            </WhatsAppCTAButton>
+            <div className="w-full sm:w-auto">
+              <a
+                href={WHATSAPP_CONFIG.getLink('guarantees')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full sm:w-auto"
+              >
+                <Button
+                  size="lg"
+                  className="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 h-16 sm:h-14 px-4 sm:px-8 text-sm sm:text-lg font-bold shadow-xl w-full sm:w-auto flex flex-wrap items-center justify-center gap-2 sm:gap-2"
+                >
+                  <MessageCircle className="h-5 w-5 sm:h-5 sm:w-5 flex-shrink-0" />
+                  <span className="hidden sm:inline">FALAR COM ESPECIALISTA NO WHATSAPP</span>
+                  <span className="sm:hidden text-center">FALAR COM ESPECIALISTA<br />NO WHATSAPP</span>
+                </Button>
+              </a>
+            </div>
           </motion.div>
         </motion.div>
       </div>

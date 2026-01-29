@@ -66,12 +66,14 @@ const HeroSection = () => {
             </ul>
 
             {/* CTA Button */}
-            <div className="mt-8 sm:mt-10 flex flex-col items-center gap-3 sm:gap-4 lg:items-start w-full lg:w-auto">
-              <WhatsAppCTAButton 
-                messageKey="hero"
-                variant="hero"
-                className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-bold w-full sm:w-auto"
-              />
+            <div className="mt-8 sm:mt-10 flex flex-col items-center gap-3 sm:gap-4 lg:items-start w-full">
+              <div className="w-full sm:w-auto">
+                <WhatsAppCTAButton 
+                  messageKey="hero"
+                  variant="hero"
+                  className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg font-bold"
+                />
+              </div>
               
               <p className="text-xs sm:text-sm text-primary-foreground/70 text-center lg:text-left">
                 👇 Agende uma demonstração gratuita de 15min e veja funcionando ao vivo

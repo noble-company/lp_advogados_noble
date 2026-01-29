@@ -391,6 +391,8 @@
   background: linear-gradient(135deg, hsl(var(--noble-red)) 0%, hsl(356 99% 45%) 100%);
   position: relative;
   overflow: hidden;
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
 .btn-noble::before {
@@ -406,6 +408,17 @@
 
 .btn-noble:hover::before {
   left: 100%;
+}
+
+.btn-noble:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 640px) {
+  .btn-noble {
+    min-height: 48px;
+    font-size: 0.875rem;
+  }
 }
 
 /* Mobile-specific optimizations */

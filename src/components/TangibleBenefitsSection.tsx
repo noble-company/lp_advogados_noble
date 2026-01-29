@@ -1,6 +1,6 @@
 import { TrendingUp, Clock, DollarSign, Sparkles, Target, CheckCircle2, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import { WhatsAppCTAButton } from "./WhatsAppCTAButton";
+import { Button } from "@/components/ui/button";
 import { WHATSAPP_CONFIG } from "@/lib/constants";
 
 const TangibleBenefitsSection = () => {
@@ -220,19 +220,28 @@ const TangibleBenefitsSection = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mx-auto max-w-4xl rounded-3xl bg-gradient-noble p-8 text-center shadow-2xl border-4 border-white/10 md:p-12"
+          className="mx-auto max-w-4xl rounded-3xl bg-gradient-to-br from-accent via-accent to-accent/80 p-8 text-center shadow-2xl border-4 border-white/20 md:p-12"
         >
-          <p className="text-2xl font-black text-black md:text-3xl lg:text-4xl mb-8">
+          <p className="text-2xl font-black text-white md:text-3xl lg:text-4xl mb-8">
             <span className="text-success">Resultado:</span> +250% de conversão | +R$ 420k/ano | <span className="text-warning">15 horas/semana</span> recuperadas
           </p>
-          <WhatsAppCTAButton 
-            messageKey="benefits"
-            variant="default"
-            className="h-14 px-8 text-lg font-bold"
-          >
-            <MessageCircle className="mr-2 h-5 w-5" />
-            QUERO ESSES RESULTADOS TAMBÉM
-          </WhatsAppCTAButton>
+          <div className="w-full sm:w-auto">
+            <a
+              href={WHATSAPP_CONFIG.getLink('benefits')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full sm:w-auto"
+            >
+              <Button
+                size="lg"
+                className="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 h-16 sm:h-14 px-4 sm:px-8 text-sm sm:text-lg font-bold shadow-xl w-full sm:w-auto flex flex-wrap items-center justify-center gap-2 sm:gap-2"
+              >
+                <MessageCircle className="h-5 w-5 sm:h-5 sm:w-5 flex-shrink-0" />
+                <span className="hidden sm:inline">QUERO ESSES RESULTADOS TAMBÉM</span>
+                <span className="sm:hidden text-center">QUERO ESSES RESULTADOS<br />TAMBÉM</span>
+              </Button>
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>
