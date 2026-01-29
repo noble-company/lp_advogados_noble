@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/legal-ai-leap/',
+  base: '/lp_advogados_noble/',
   server: {
     host: "::",
     port: 8080,
