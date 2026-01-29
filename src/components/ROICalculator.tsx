@@ -29,33 +29,33 @@ const ROICalculator = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-primary via-primary to-secondary py-20 md:py-32 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-primary via-primary to-secondary py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 h-96 w-96 rounded-full bg-accent blur-3xl" />
         <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-warning blur-3xl" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-4">
+      <div className="container relative z-10 mx-auto px-3 sm:px-4">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
+          className="mb-8 sm:mb-12 text-center"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-2 backdrop-blur-sm">
-            <Calculator className="h-4 w-4 text-accent" />
-            <span className="text-sm font-bold text-white uppercase tracking-wide">
+          <div className="mb-3 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1.5 sm:px-4 sm:py-2 backdrop-blur-sm">
+            <Calculator className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent" />
+            <span className="text-xs sm:text-sm font-bold text-white uppercase tracking-wide">
               Calculadora Interativa
             </span>
           </div>
-          <h2 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white md:text-4xl lg:text-5xl xl:text-6xl px-4">
             Quanto Dinheiro Você Está{" "}
             <span className="text-accent">Perdendo</span>?
           </h2>
-          <p className="mt-4 text-lg text-white/80 md:text-xl max-w-3xl mx-auto">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-white/80 md:text-xl max-w-3xl mx-auto px-4">
             Ajuste os valores abaixo para ver quanto você está perdendo em clientes não atendidos
             (e quanto poderia recuperar com a Noble Company)
           </p>
@@ -67,16 +67,16 @@ const ROICalculator = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl bg-card border-2 border-white/10 p-8 md:p-12 shadow-2xl backdrop-blur-sm"
+            className="rounded-2xl sm:rounded-3xl bg-card border-2 border-white/10 p-4 sm:p-6 md:p-8 lg:p-12 shadow-2xl backdrop-blur-sm"
           >
             {/* Input Controls */}
-            <div className="grid gap-8 md:grid-cols-3 mb-12">
+            <div className="grid gap-6 sm:gap-8 md:grid-cols-3 mb-8 sm:mb-12">
               {/* Leads per Month */}
-              <div className="space-y-4">
-                <Label className="text-base font-semibold text-foreground">
+              <div className="space-y-3 sm:space-y-4">
+                <Label className="text-sm sm:text-base font-semibold text-foreground">
                   Leads recebidos por mês
                 </Label>
-                <div className="text-4xl font-bold text-accent">{leadsPerMonth}</div>
+                <div className="text-3xl sm:text-4xl font-bold text-accent">{leadsPerMonth}</div>
                 <Slider
                   value={[leadsPerMonth]}
                   onValueChange={(value) => setLeadsPerMonth(value[0])}
@@ -85,18 +85,18 @@ const ROICalculator = () => {
                   step={5}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground">
+                <div className="flex justify-between text-[10px] sm:text-xs text-muted-foreground">
                   <span>5</span>
                   <span>100</span>
                 </div>
               </div>
 
               {/* Average Case Value */}
-              <div className="space-y-4">
-                <Label className="text-base font-semibold text-foreground">
+              <div className="space-y-3 sm:space-y-4">
+                <Label className="text-sm sm:text-base font-semibold text-foreground">
                   Valor médio por cliente (R$)
                 </Label>
-                <div className="text-4xl font-bold text-accent">
+                <div className="text-3xl sm:text-4xl font-bold text-accent">
                   {averageCaseValue.toLocaleString('pt-BR')}
                 </div>
                 <Slider
@@ -107,18 +107,18 @@ const ROICalculator = () => {
                   step={1000}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground">
+                <div className="flex justify-between text-[10px] sm:text-xs text-muted-foreground">
                   <span>1k</span>
                   <span>50k</span>
                 </div>
               </div>
 
               {/* Response Time */}
-              <div className="space-y-4">
-                <Label className="text-base font-semibold text-foreground">
+              <div className="space-y-3 sm:space-y-4">
+                <Label className="text-sm sm:text-base font-semibold text-foreground">
                   Tempo médio de resposta (horas)
                 </Label>
-                <div className="text-4xl font-bold text-accent">{currentResponseTime}h</div>
+                <div className="text-3xl sm:text-4xl font-bold text-accent">{currentResponseTime}h</div>
                 <Slider
                   value={[currentResponseTime]}
                   onValueChange={(value) => setCurrentResponseTime(value[0])}
@@ -127,7 +127,7 @@ const ROICalculator = () => {
                   step={1}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground">
+                <div className="flex justify-between text-[10px] sm:text-xs text-muted-foreground">
                   <span>1h</span>
                   <span>24h</span>
                 </div>
@@ -135,37 +135,37 @@ const ROICalculator = () => {
             </div>
 
             {/* Results */}
-            <div className="grid gap-6 md:grid-cols-2 border-t-2 border-border pt-8">
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2 border-t-2 border-border pt-6 sm:pt-8">
               {/* Current Situation (Loss) */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="rounded-2xl bg-destructive/10 border-2 border-destructive/30 p-6 text-center"
+                className="rounded-xl sm:rounded-2xl bg-destructive/10 border-2 border-destructive/30 p-4 sm:p-6 text-center"
               >
-                <div className="mb-4 flex justify-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-destructive/20">
-                    <TrendingUp className="h-6 w-6 text-destructive rotate-180" />
+                <div className="mb-3 sm:mb-4 flex justify-center">
+                  <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-destructive/20">
+                    <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 text-destructive rotate-180" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">
+                <h3 className="text-lg sm:text-xl font-bold text-foreground mb-3 sm:mb-4">
                   💔 Situação Atual
                 </h3>
                 <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Leads perdidos por mês
                   </p>
-                  <p className="text-3xl font-bold text-destructive">
+                  <p className="text-2xl sm:text-3xl font-bold text-destructive">
                     ~{leadsLostPerMonth} clientes
                   </p>
-                  <p className="text-sm text-muted-foreground mt-4">
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-3 sm:mt-4">
                     Perda mensal
                   </p>
-                  <p className="text-4xl font-black text-destructive">
+                  <p className="text-3xl sm:text-4xl font-black text-destructive">
                     R$ {monthlyLoss.toLocaleString('pt-BR')}
                   </p>
-                  <p className="text-sm text-muted-foreground mt-2">
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-2">
                     Perda anual
                   </p>
-                  <p className="text-2xl font-bold text-destructive">
+                  <p className="text-xl sm:text-2xl font-bold text-destructive">
                     R$ {yearlyLoss.toLocaleString('pt-BR')}
                   </p>
                 </div>
@@ -174,33 +174,33 @@ const ROICalculator = () => {
               {/* With Noble Company (Gain) */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="rounded-2xl bg-success/10 border-2 border-success/30 p-6 text-center"
+                className="rounded-xl sm:rounded-2xl bg-success/10 border-2 border-success/30 p-4 sm:p-6 text-center"
               >
-                <div className="mb-4 flex justify-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-success/20">
-                    <TrendingUp className="h-6 w-6 text-success" />
+                <div className="mb-3 sm:mb-4 flex justify-center">
+                  <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-success/20">
+                    <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 text-success" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">
+                <h3 className="text-lg sm:text-xl font-bold text-foreground mb-3 sm:mb-4">
                   ✨ Com Noble Company
                 </h3>
                 <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Clientes recuperados por mês
                   </p>
-                  <p className="text-3xl font-bold text-success">
+                  <p className="text-2xl sm:text-3xl font-bold text-success">
                     +{leadsRecovered} clientes
                   </p>
-                  <p className="text-sm text-muted-foreground mt-4">
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-3 sm:mt-4">
                     Ganho mensal
                   </p>
-                  <p className="text-4xl font-black text-success">
+                  <p className="text-3xl sm:text-4xl font-black text-success">
                     R$ {monthlyGain.toLocaleString('pt-BR')}
                   </p>
-                  <p className="text-sm text-muted-foreground mt-2">
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-2">
                     Ganho anual
                   </p>
-                  <p className="text-2xl font-bold text-success">
+                  <p className="text-xl sm:text-2xl font-bold text-success">
                     R$ {yearlyGain.toLocaleString('pt-BR')}
                   </p>
                 </div>
@@ -213,18 +213,18 @@ const ROICalculator = () => {
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
-              className="mt-8 rounded-2xl bg-gradient-to-r from-accent via-accent to-accent/80 p-6 text-center"
+              className="mt-6 sm:mt-8 rounded-xl sm:rounded-2xl bg-gradient-to-r from-accent via-accent to-accent/80 p-4 sm:p-6 text-center"
             >
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <DollarSign className="h-8 w-8 text-white" />
-                <h3 className="text-2xl font-bold text-white md:text-3xl">
+              <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                <DollarSign className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+                <h3 className="text-xl sm:text-2xl font-bold text-white md:text-3xl">
                   ROI Estimado
                 </h3>
               </div>
-              <p className="text-6xl font-black text-white md:text-7xl">
+              <p className="text-5xl sm:text-6xl font-black text-white md:text-7xl">
                 {roi}x
               </p>
-              <p className="text-white/90 text-lg mt-2">
+              <p className="text-white/90 text-base sm:text-lg mt-2">
                 Retorno sobre o investimento no primeiro ano
               </p>
             </motion.div>
@@ -232,18 +232,19 @@ const ROICalculator = () => {
             {/* CTA Button */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="mt-8 text-center"
+              className="mt-6 sm:mt-8 text-center"
             >
               <Button
                 onClick={handleWhatsAppContact}
                 size="lg"
-                className="btn-noble group h-16 px-8 text-lg font-bold text-white shadow-2xl hover:shadow-accent/50 w-full md:w-auto"
+                className="btn-noble group h-14 sm:h-16 px-6 sm:px-8 text-base sm:text-lg font-bold text-white shadow-2xl hover:shadow-accent/50 w-full md:w-auto"
               >
-                <span className="mr-3 text-xl">💬</span>
-                RECUPERAR ESSES CLIENTES AGORA
-                <ArrowRight className="ml-3 h-6 w-6 transition-transform group-hover:translate-x-1" />
+                <span className="mr-2 sm:mr-3 text-lg sm:text-xl">💬</span>
+                <span className="hidden sm:inline">RECUPERAR ESSES CLIENTES AGORA</span>
+                <span className="sm:hidden">RECUPERAR CLIENTES</span>
+                <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform group-hover:translate-x-1" />
               </Button>
-              <p className="mt-4 text-sm text-muted-foreground">
+              <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-muted-foreground">
                 ⚡ Fale com um especialista • Resposta em até 5 minutos
               </p>
             </motion.div>

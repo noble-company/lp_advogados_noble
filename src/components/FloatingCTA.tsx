@@ -100,18 +100,18 @@ const FloatingCTA = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-4 md:hidden"
+            className="fixed bottom-0 left-0 right-0 z-50 px-3 pb-3 md:hidden bg-gradient-to-t from-background via-background/95 to-transparent pt-3"
           >
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="block">
               <Button
-                className="btn-noble group h-16 w-full text-base font-bold text-white shadow-2xl shadow-accent/30"
+                className="btn-noble group h-14 w-full text-sm font-bold text-white shadow-2xl shadow-accent/30"
               >
-                <MessageCircle className="mr-2 h-5 w-5" />
+                <MessageCircle className="mr-1.5 h-4 w-4" />
                 FALAR COM ESPECIALISTA
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
-            <p className="mt-2 text-center text-xs text-white/70">
+            <p className="mt-1.5 text-center text-[10px] text-foreground/70">
               ⚡ Resposta em até 5 minutos
             </p>
           </motion.div>

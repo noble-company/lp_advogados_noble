@@ -66,27 +66,27 @@ const PainPointsSection = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-b from-background to-muted/30 py-20 md:py-32">
-      <div className="container mx-auto px-4">
+    <section className="relative bg-gradient-to-b from-background to-muted/30 py-12 sm:py-16 md:py-20 lg:py-32">
+      <div className="container mx-auto px-3 sm:px-4">
         {/* Pain Points Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-10 sm:mb-12 md:mb-16 text-center"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-destructive/10 border border-destructive/20 px-4 py-2">
-            <AlertCircle className="h-4 w-4 text-destructive" />
-            <span className="text-sm font-bold text-destructive uppercase tracking-wide">
+          <div className="mb-3 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-destructive/10 border border-destructive/20 px-3 py-1.5 sm:px-4 sm:py-2">
+            <AlertCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-destructive" />
+            <span className="text-xs sm:text-sm font-bold text-destructive uppercase tracking-wide">
               A Realidade Dolorosa
             </span>
           </div>
-          <h2 className="text-4xl font-bold text-foreground md:text-5xl lg:text-6xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground md:text-4xl lg:text-5xl xl:text-6xl px-2">
             Reconhece Alguma Dessas{" "}
             <span className="text-destructive">Situações</span>?
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground md:text-xl max-w-2xl mx-auto">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-muted-foreground md:text-xl max-w-2xl mx-auto px-4">
             Se pelo menos 2 desses problemas são familiares, você está deixando dinheiro na mesa
           </p>
         </motion.div>
@@ -97,7 +97,7 @@ const PainPointsSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="mx-auto max-w-4xl space-y-4 mb-16"
+          className="mx-auto max-w-4xl space-y-3 sm:space-y-4 mb-10 sm:mb-12 md:mb-16"
         >
           {painPoints.map((pain, index) => (
             <motion.div

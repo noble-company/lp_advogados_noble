@@ -49,32 +49,32 @@ const ThreePillarsSection = () => {
   ];
 
   return (
-    <section className="relative bg-gradient-to-b from-background via-muted/20 to-background py-20 md:py-32">
+    <section className="relative bg-gradient-to-b from-background via-muted/20 to-background py-12 sm:py-16 md:py-20 lg:py-32">
       {/* Decorative Elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-accent/30 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-success/30 blur-3xl" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-4">
+      <div className="container relative z-10 mx-auto px-3 sm:px-4">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-10 sm:mb-12 md:mb-16 text-center"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/10 border border-accent/20 px-4 py-2">
-            <Shield className="h-4 w-4 text-accent" />
-            <span className="text-sm font-bold text-accent uppercase tracking-wide">
+          <div className="mb-3 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-accent/10 border border-accent/20 px-3 py-1.5 sm:px-4 sm:py-2">
+            <Shield className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent" />
+            <span className="text-xs sm:text-sm font-bold text-accent uppercase tracking-wide">
               Como Funciona
             </span>
           </div>
-          <h2 className="text-4xl font-bold text-foreground md:text-5xl lg:text-6xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground md:text-4xl lg:text-5xl xl:text-6xl px-2">
             ⚡ Os 3 Pilares do <span className="text-accent">Sistema Noble</span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground md:text-xl max-w-3xl mx-auto">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-muted-foreground md:text-xl max-w-3xl mx-auto px-4">
             A combinação perfeita de velocidade, inteligência e automação para captar mais clientes
           </p>
         </motion.div>

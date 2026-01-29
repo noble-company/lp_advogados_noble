@@ -2,37 +2,37 @@ import { Check, CheckCheck } from "lucide-react";
 
 const WhatsAppMockup = () => {
   return (
-    <div className="relative mx-auto w-[280px] sm:w-[320px]">
+    <div className="relative mx-auto w-[240px] sm:w-[280px] md:w-[320px]">
       {/* Phone Frame */}
-      <div className="relative rounded-[40px] bg-foreground p-2 shadow-2xl">
+      <div className="relative rounded-[32px] sm:rounded-[40px] bg-foreground p-1.5 sm:p-2 shadow-2xl">
         {/* Phone Notch */}
-        <div className="absolute left-1/2 top-0 z-10 h-6 w-24 -translate-x-1/2 rounded-b-2xl bg-foreground" />
+        <div className="absolute left-1/2 top-0 z-10 h-5 w-20 sm:h-6 sm:w-24 -translate-x-1/2 rounded-b-2xl bg-foreground" />
         
         {/* Screen */}
-        <div className="relative overflow-hidden rounded-[32px] bg-[#0b141a]">
+        <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] bg-[#0b141a]">
           {/* WhatsApp Header */}
-          <div className="flex items-center gap-3 bg-[#1f2c34] px-4 py-3 pt-8">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent/80">
-              <span className="text-lg font-bold text-accent-foreground">IA</span>
+          <div className="flex items-center gap-2 sm:gap-3 bg-[#1f2c34] px-3 py-2.5 pt-7 sm:px-4 sm:py-3 sm:pt-8">
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent/80">
+              <span className="text-base sm:text-lg font-bold text-accent-foreground">IA</span>
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-primary-foreground">Assistente Jurídico</p>
-              <p className="text-xs text-success">online</p>
+              <p className="text-xs sm:text-sm font-medium text-primary-foreground">Assistente Jurídico</p>
+              <p className="text-[10px] sm:text-xs text-success">online</p>
             </div>
           </div>
 
           {/* Chat Messages */}
           <div 
-            className="space-y-3 p-4" 
+            className="space-y-2 sm:space-y-3 p-2.5 sm:p-4" 
             style={{ 
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              minHeight: "320px"
+              minHeight: "260px"
             }}
           >
             {/* Bot Message 1 */}
             <div className="flex justify-start">
-              <div className="max-w-[85%] rounded-lg rounded-tl-none bg-[#1f2c34] px-3 py-2 shadow-sm">
-                <p className="text-sm text-primary-foreground">
+              <div className="max-w-[85%] rounded-lg rounded-tl-none bg-[#1f2c34] px-2.5 py-1.5 sm:px-3 sm:py-2 shadow-sm">
+                <p className="text-xs sm:text-sm text-primary-foreground">
                   Olá! Sou a assistente virtual do escritório. Em que posso ajudar?
                 </p>
                 <div className="mt-1 flex items-center justify-end gap-1">

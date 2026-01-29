@@ -49,28 +49,28 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-noble-gradient py-16 md:py-24">
+    <section className="relative overflow-hidden bg-noble-gradient py-12 sm:py-16 md:py-24">
       {/* Decorative background elements */}
       <div className="absolute left-0 top-1/4 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/20 blur-3xl" />
       <div className="absolute bottom-1/4 right-0 h-96 w-96 translate-x-1/2 rounded-full bg-accent/20 blur-3xl" />
 
-      <div className="container relative mx-auto px-4">
+      <div className="container relative mx-auto px-3 sm:px-4">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center md:mb-16"
+          className="mb-8 sm:mb-12 md:mb-16 text-center"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-            <HelpCircle className="h-4 w-4" />
+          <div className="mb-3 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-primary">
+            <HelpCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             Dúvidas Frequentes
           </div>
-          <h2 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white md:text-4xl lg:text-5xl">
             <span className="text-gradient-noble">PERGUNTAS</span> FREQUENTES
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-300">
+          <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-base sm:text-lg text-gray-300">
             Tire suas dúvidas sobre como funciona a implementação e os resultados
           </p>
         </motion.div>
@@ -83,7 +83,7 @@ const FAQSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto max-w-4xl"
         >
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
@@ -94,15 +94,15 @@ const FAQSection = () => {
               >
                 <AccordionItem
                   value={`item-${index}`}
-                  className="glass-effect group overflow-hidden rounded-lg border border-primary/20 bg-white/95 px-6 shadow-lg backdrop-blur-sm transition-all hover:border-primary/40 hover:shadow-xl"
+                  className="glass-effect group overflow-hidden rounded-lg border border-primary/20 bg-white/95 px-3 sm:px-6 shadow-lg backdrop-blur-sm transition-all hover:border-primary/40 hover:shadow-xl"
                 >
-                  <AccordionTrigger className="text-left text-lg font-semibold text-gray-200 transition-colors hover:text-accent hover:no-underline">
-                    <span className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-primary transition-transform group-hover:scale-110" />
-                      {faq.question}
+                  <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-gray-200 transition-colors hover:text-accent hover:no-underline py-3 sm:py-4">
+                    <span className="flex items-start gap-2 sm:gap-3">
+                      <CheckCircle2 className="mt-0.5 sm:mt-1 h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-primary transition-transform group-hover:scale-110" />
+                      <span className="pr-2">{faq.question}</span>
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-4 pl-8 pt-2 text-base leading-relaxed text-gray-300">
+                  <AccordionContent className="pb-3 sm:pb-4 pl-6 sm:pl-8 pt-1 sm:pt-2 text-sm sm:text-base leading-relaxed text-gray-300">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -117,13 +117,13 @@ const FAQSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-12 max-w-3xl text-center"
+          className="mx-auto mt-8 sm:mt-12 max-w-3xl text-center"
         >
-          <div className="rounded-2xl border border-accent/30 bg-gradient-noble p-8 shadow-2xl md:p-10">
-            <h3 className="mb-4 text-2xl font-bold text-white md:text-3xl">
+          <div className="rounded-xl sm:rounded-2xl border border-accent/30 bg-gradient-noble p-6 sm:p-8 md:p-10 shadow-2xl">
+            <h3 className="mb-3 sm:mb-4 text-xl sm:text-2xl font-bold text-white md:text-3xl">
               Ainda tem dúvidas?
             </h3>
-            <p className="mb-6 text-lg text-gray-100">
+            <p className="mb-5 sm:mb-6 text-base sm:text-lg text-gray-100">
               Fale direto com nosso time no WhatsApp. Respondemos em minutos.
             </p>
             <motion.div
@@ -133,9 +133,9 @@ const FAQSection = () => {
               <WhatsAppCTAButton 
                 messageKey="faq"
                 variant="default"
-                className="h-auto bg-white px-8 py-4 text-lg font-bold text-noble-purple hover:bg-gray-100 md:text-xl"
+                className="h-auto bg-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-bold text-noble-purple hover:bg-gray-100 md:text-xl w-full sm:w-auto"
               >
-                <MessageCircle className="mr-2 h-5 w-5" />
+                <MessageCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 Tirar Dúvidas no WhatsApp
               </WhatsAppCTAButton>
             </motion.div>
