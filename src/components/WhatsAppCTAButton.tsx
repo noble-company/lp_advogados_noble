@@ -1,6 +1,7 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WHATSAPP_CONFIG } from "@/lib/constants";
+import { useTracking } from "@/hooks/useTracking";
 
 interface WhatsAppCTAButtonProps {
   messageKey?: keyof typeof WHATSAPP_CONFIG.messages;
@@ -18,6 +19,15 @@ export const WhatsAppCTAButton = ({
   children
 }: WhatsAppCTAButtonProps) => {
   const link = WHATSAPP_CONFIG.getLink(messageKey);
+  const { trackWhatsAppClick } = useTracking();
+  
+  const handleClick = () => {
+    trackWhatsAppClick({
+      buttonLocation: variant,
+      messageKey,
+      variant,
+    });
+  };
   
   const variants = {
     default: "bg-green-800 hover:bg-green-700 active:bg-green-900 text-white shadow-lg hover:shadow-xl",
@@ -39,6 +49,7 @@ export const WhatsAppCTAButton = ({
       target="_blank" 
       rel="noopener noreferrer" 
       className="inline-block w-full sm:w-auto"
+      onClick={handleClick}
     >
       <Button 
         size={size}

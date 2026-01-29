@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { X } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { WHATSAPP_CONFIG } from "@/lib/constants";
+import { useTracking } from "@/hooks/useTracking";
 import {
   Select,
   SelectContent,
@@ -26,6 +26,7 @@ interface ConversionFormProps {
 }
 
 const ConversionForm = ({ isOpen, onClose }: ConversionFormProps) => {
+  const { trackFormEvent } = useTracking();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,8 +36,22 @@ const ConversionForm = ({ isOpen, onClose }: ConversionFormProps) => {
     leadsPerMonth: "",
   });
 
+  // Track form open/close
+  useEffect(() => {
+    if (isOpen) {
+      trackFormEvent("open", "conversion_form");
+    }
+  }, [isOpen, trackFormEvent]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Track form submission
+    trackFormEvent("submit", "conversion_form", {
+      area: formData.area,
+      leads_per_month: formData.leadsPerMonth,
+      has_firm_name: !!formData.firm,
+    });
     
     // Create WhatsApp message with form data
     const message = `🎯 *Nova Demonstração Solicitada*
@@ -70,10 +85,20 @@ Aguardo contato para agendar a demonstração!`;
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    
+    // Track field interaction (throttled by field name)
+    trackFormEvent("field_interaction", "conversion_form", {
+      field,
+    });
+  };
+
+  const handleClose = () => {
+    trackFormEvent("close", "conversion_form");
+    onClose();
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-gray-900">

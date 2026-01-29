@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { WHATSAPP_CONFIG } from "@/lib/constants";
+import { useTracking } from "@/hooks/useTracking";
 
 const ROICalculator = () => {
+  const { trackCalculatorInteraction, trackWhatsAppClick } = useTracking();
   const [leadsPerMonth, setLeadsPerMonth] = useState(10);
   const [averageCaseValue, setAverageCaseValue] = useState(8000);
   const [currentResponseTime, setCurrentResponseTime] = useState(4);
@@ -24,8 +26,43 @@ const ROICalculator = () => {
   const roi = ((yearlyGain / 3588) * 100).toFixed(0); // Cost: R$ 299/month = R$ 3,588/year
 
   const handleWhatsAppContact = () => {
+    // Prepare calculator context data
+    const calculatorData = {
+      leads_per_month: leadsPerMonth,
+      average_case_value: averageCaseValue,
+      response_time: currentResponseTime,
+      leads_lost: leadsLostPerMonth,
+      monthly_loss: monthlyLoss,
+      yearly_loss: yearlyLoss,
+      leads_recovered: leadsRecovered,
+      monthly_gain: monthlyGain,
+      yearly_gain: yearlyGain,
+      roi: parseFloat(roi),
+    };
+
+    // Track as WhatsApp click with calculator context (single tracking event)
+    trackWhatsAppClick(
+      {
+        buttonLocation: "roi_calculator",
+        messageKey: "default",
+        variant: "calculator",
+      },
+      calculatorData
+    );
+
     const message = `Olá Noble Company! Calculei meu ROI e descobri que estou perdendo R$ ${monthlyLoss.toLocaleString('pt-BR')} por mês (R$ ${yearlyLoss.toLocaleString('pt-BR')} por ano). Gostaria de saber como o Assistente de IA pode me ajudar a recuperar esses clientes!`;
     window.open(`https://wa.me/${WHATSAPP_CONFIG.number}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
+  const handleSliderChange = (field: string, value: number) => {
+    // Track slider interaction
+    trackCalculatorInteraction({
+      action: "slider_change",
+      calculatedValues: {
+        field,
+        value,
+      },
+    });
   };
 
   return (
@@ -79,7 +116,10 @@ const ROICalculator = () => {
                 <div className="text-3xl sm:text-4xl font-bold text-accent">{leadsPerMonth}</div>
                 <Slider
                   value={[leadsPerMonth]}
-                  onValueChange={(value) => setLeadsPerMonth(value[0])}
+                  onValueChange={(value) => {
+                    setLeadsPerMonth(value[0]);
+                    handleSliderChange("leads_per_month", value[0]);
+                  }}
                   min={5}
                   max={100}
                   step={5}
@@ -101,7 +141,10 @@ const ROICalculator = () => {
                 </div>
                 <Slider
                   value={[averageCaseValue]}
-                  onValueChange={(value) => setAverageCaseValue(value[0])}
+                  onValueChange={(value) => {
+                    setAverageCaseValue(value[0]);
+                    handleSliderChange("average_case_value", value[0]);
+                  }}
                   min={1000}
                   max={50000}
                   step={1000}
@@ -121,7 +164,10 @@ const ROICalculator = () => {
                 <div className="text-3xl sm:text-4xl font-bold text-accent">{currentResponseTime}h</div>
                 <Slider
                   value={[currentResponseTime]}
-                  onValueChange={(value) => setCurrentResponseTime(value[0])}
+                  onValueChange={(value) => {
+                    setCurrentResponseTime(value[0]);
+                    handleSliderChange("response_time", value[0]);
+                  }}
                   min={1}
                   max={24}
                   step={1}
