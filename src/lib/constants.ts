@@ -13,8 +13,25 @@ export const WHATSAPP_CONFIG = {
     solution: "Olá! Vi a demonstração da conversa e quero implementar isso no meu escritório.",
   },
   
-  getLink: (messageKey: keyof typeof WHATSAPP_CONFIG.messages = 'default') => {
+  getLink: (
+    messageKey: keyof typeof WHATSAPP_CONFIG.messages = 'default',
+    utmParams?: Record<string, string>
+  ) => {
     const message = WHATSAPP_CONFIG.messages[messageKey];
-    return `https://wa.me/${WHATSAPP_CONFIG.number}?text=${encodeURIComponent(message)}`;
+    let link = `https://wa.me/${WHATSAPP_CONFIG.number}?text=${encodeURIComponent(message)}`;
+    
+    // Append UTM parameters if provided
+    if (utmParams) {
+      const utmString = Object.entries(utmParams)
+        .filter(([_, value]) => value) // Filter out empty values
+        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+        .join('&');
+      
+      if (utmString) {
+        link += `&${utmString}`;
+      }
+    }
+    
+    return link;
   },
 };

@@ -12,8 +12,11 @@ import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import ROICalculator from "@/components/ROICalculator";
+import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 
 const Index = () => {
+  // Track user scroll depth for engagement analytics
+  useScrollDepthTracking();
   return (
     <>
       <main className="min-h-screen">

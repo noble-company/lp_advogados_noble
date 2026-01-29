@@ -1,20 +1,34 @@
 import { useState, useEffect } from "react";
-import { MessageCircle, ArrowRight, X } from "lucide-react";
+import { MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { WHATSAPP_CONFIG } from "@/lib/constants";
+import { useTracking } from "@/hooks/useTracking";
 
 const WHATSAPP_LINK = WHATSAPP_CONFIG.getLink('default');
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const { trackWhatsAppClick, trackSection } = useTracking();
+
+  const handleClick = () => {
+    trackWhatsAppClick({
+      buttonLocation: "floating_cta",
+      messageKey: "default",
+      variant: "floating",
+    });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       // Show button after scrolling 300px
       if (window.scrollY > 300) {
-        setIsVisible(true);
+        if (!isVisible) {
+          setIsVisible(true);
+          // Track floating CTA appearance
+          trackSection("floating_cta_appeared");
+        }
       } else {
         setIsVisible(false);
       }
@@ -22,7 +36,7 @@ const FloatingCTA = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isVisible, trackSection]);
 
   // Show tooltip briefly after button appears
   useEffect(() => {
@@ -69,7 +83,12 @@ const FloatingCTA = () => {
               </AnimatePresence>
 
               {/* Button */}
-              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+              <a 
+                href={WHATSAPP_LINK} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={handleClick}
+              >
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -102,7 +121,13 @@ const FloatingCTA = () => {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             className="fixed bottom-0 left-0 right-0 z-50 px-3 pb-3 md:hidden bg-gradient-to-t from-background via-background/95 to-transparent pt-3"
           >
-            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="block">
+            <a 
+              href={WHATSAPP_LINK} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="block"
+              onClick={handleClick}
+            >
               <Button
                 className="btn-noble group h-14 w-full text-sm font-bold text-white shadow-2xl shadow-accent/30"
               >

@@ -1,4 +1,4 @@
-import { Clock, Target, Calendar, Check, Zap, Brain, Shield } from "lucide-react";
+import { Calendar, Zap, Brain, Shield, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { staggerContainerSlowVariants, fadeInUpVariants } from "@/lib/animations";
 

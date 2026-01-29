@@ -1,4 +1,4 @@
-import { Check, ArrowRight, Clock, Users, TrendingUp, AlertCircle, MessageCircle, Zap, Shield } from "lucide-react";
+import { Check, Clock, Users, TrendingUp, AlertCircle, Zap } from "lucide-react";
 import { WhatsAppCTAButton } from "./WhatsAppCTAButton";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
