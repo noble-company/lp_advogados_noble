@@ -23,15 +23,9 @@ const Index = () => {
         <HeroSection />
         <StatsSection />
         <PainPointsSection />
-        <ROICalculator />
-        <SolutionPresentationSection />
         <ThreePillarsSection />
-        <HowItWorksSection />
         <TangibleBenefitsSection />
         <SocialProofSection />
-        <GuaranteesSection />
-
-        <FAQSection />
         <Footer />
       </main>
       <FloatingCTA />
