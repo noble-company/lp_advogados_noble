@@ -8,29 +8,52 @@ import { useLeadForm } from "@/hooks/useLeadForm";
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const { trackSection } = useTracking();
+  const { trackSection, trackWhatsAppClick } = useTracking();
   const { openLeadForm } = useLeadForm();
 
   const handleClick = () => {
+    trackWhatsAppClick({
+      buttonLocation: "floating_cta",
+      messageKey: "floating_cta",
+    });
     openLeadForm();
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Show button after scrolling 300px
-      if (window.scrollY > 300) {
-        if (!isVisible) {
-          setIsVisible(true);
-          // Track floating CTA appearance
-          trackSection("floating_cta_appeared");
-        }
-      } else {
-        setIsVisible(false);
-      }
-    };
+    // Cria um sentinela invisível 300px abaixo do topo
+    let sentinel: HTMLDivElement | null = document.getElementById("cta-sentinel");
+    if (!sentinel) {
+      sentinel = document.createElement("div");
+      sentinel.id = "cta-sentinel";
+      sentinel.style.position = "absolute";
+      sentinel.style.top = "300px";
+      sentinel.style.width = "1px";
+      sentinel.style.height = "1px";
+      sentinel.style.pointerEvents = "none";
+      document.body.appendChild(sentinel);
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!isVisible) {
+            setIsVisible(true);
+            trackSection("floating_cta_appeared");
+          }
+        } else {
+          setIsVisible(false);
+        }
+      },
+      {
+        root: null,
+        threshold: 0,
+      }
+    );
+    observer.observe(sentinel);
+    return () => {
+      observer.disconnect();
+      if (sentinel) document.body.removeChild(sentinel);
+    };
   }, [isVisible, trackSection]);
 
   // Show tooltip briefly after button appears

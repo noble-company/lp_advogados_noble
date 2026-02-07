@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -46,6 +46,10 @@ const LeadCaptureModal = () => {
 
     // Track form submission
     trackFormEvent("submit", "lead_capture_form", {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      instagram: formData.instagram,
       company_size: formData.companySize,
       daily_services: formData.dailyServices,
       has_instagram: !!formData.instagram,
@@ -69,12 +73,23 @@ const LeadCaptureModal = () => {
     }, 3000);
   };
 
+
+  // Debounce map para cada campo
+  const debounceTimers = React.useRef<{ [key: string]: NodeJS.Timeout }>({});
+
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
 
-    trackFormEvent("field_interaction", "lead_capture_form", {
-      field,
-    });
+    // Limpa debounce anterior se existir
+    if (debounceTimers.current[field]) {
+      clearTimeout(debounceTimers.current[field]);
+    }
+    // Inicia novo debounce
+    debounceTimers.current[field] = setTimeout(() => {
+      trackFormEvent("field_interaction", "lead_capture_form", {
+        field,
+      });
+    }, 1500);
   };
 
   const handleClose = () => {
