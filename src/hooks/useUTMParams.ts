@@ -8,6 +8,7 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { TRACKING_CONFIG } from "@/lib/tracking-constants";
 
 export interface UTMParams {
   utm_source?: string;
@@ -18,8 +19,8 @@ export interface UTMParams {
   [key: string]: string | undefined;
 }
 
-const UTM_STORAGE_KEY = "noble_utm_params";
-const UTM_EXPIRY_DAYS = 30;
+const UTM_STORAGE_KEY = TRACKING_CONFIG.UTM_STORAGE_KEY;
+const UTM_EXPIRY_DAYS = TRACKING_CONFIG.UTM_EXPIRY_DAYS;
 
 // In-memory fallback cache for when localStorage is unavailable
 let inMemoryUTMCache: { params: UTMParams; expiry: number } | null = null;

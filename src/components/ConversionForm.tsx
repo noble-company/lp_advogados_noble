@@ -83,13 +83,23 @@ Aguardo contato para agendar a demonstração!`;
     onClose();
   };
 
+
+  // Debounce map para cada campo
+  const debounceTimers = React.useRef<{ [key: string]: NodeJS.Timeout }>({});
+
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    
-    // Track field interaction (throttled by field name)
-    trackFormEvent("field_interaction", "conversion_form", {
-      field,
-    });
+
+    // Limpa debounce anterior se existir
+    if (debounceTimers.current[field]) {
+      clearTimeout(debounceTimers.current[field]);
+    }
+    // Inicia novo debounce
+    debounceTimers.current[field] = setTimeout(() => {
+      trackFormEvent("field_interaction", "conversion_form", {
+        field,
+      });
+    }, 1500);
   };
 
   const handleClose = () => {

@@ -1,6 +1,7 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/hooks/useLeadForm";
+import { useTracking } from "@/hooks/useTracking";
 
 interface WhatsAppCTAButtonProps {
   messageKey?: string;
@@ -11,12 +12,23 @@ interface WhatsAppCTAButtonProps {
 }
 
 export const WhatsAppCTAButton = ({ 
+  messageKey = "default_cta",
   variant = "default",
   size = "lg",
   className = "",
   children
 }: WhatsAppCTAButtonProps) => {
   const { openLeadForm } = useLeadForm();
+  const { trackWhatsAppClick } = useTracking();
+
+  const handleClick = () => {
+    trackWhatsAppClick({
+      buttonLocation: `cta_${variant}`,
+      messageKey,
+      variant,
+    });
+    openLeadForm();
+  };
   
   const variants = {
     default: "bg-green-800 hover:bg-green-700 active:bg-green-900 text-white shadow-lg hover:shadow-xl",
@@ -36,7 +48,7 @@ export const WhatsAppCTAButton = ({
     <div className="inline-block w-full sm:w-auto">
       <Button 
         size={size}
-        onClick={openLeadForm}
+        onClick={handleClick}
         className={`group transition-all w-full sm:w-auto cursor-pointer ${variants[variant]} ${className}`}
       >
         {variant === "floating" && <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />}
