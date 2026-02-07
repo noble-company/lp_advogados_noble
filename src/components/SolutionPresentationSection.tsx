@@ -1,10 +1,11 @@
 import { ArrowRight, Check, Sparkles, Zap, Clock, Brain, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { WHATSAPP_CONFIG } from "@/lib/constants";
+import { useLeadForm } from "@/hooks/useLeadForm";
 import { staggerContainerVariants, fadeInLeftVariants } from "@/lib/animations";
 
 const SolutionPresentationSection = () => {
+  const { openLeadForm } = useLeadForm();
   const benefits = [
     { icon: Clock, text: "Nunca dorme, nunca tira férias, nunca adoece" },
     { icon: Zap, text: "Responde em menos de 2 minutos, 24 horas por dia" },
@@ -269,20 +270,15 @@ const SolutionPresentationSection = () => {
             transition={{ delay: 0.6 }}
             className="mt-8 text-center"
           >
-            <a
-              href={WHATSAPP_CONFIG.getLink('solution')}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
               <Button
                 size="lg"
-                className="btn-noble group h-16 px-8 text-lg font-bold text-white shadow-2xl"
+                onClick={openLeadForm}
+                className="btn-noble group h-16 px-8 text-lg font-bold text-white shadow-2xl cursor-pointer"
               >
                 <span className="mr-3 text-xl">💬</span>
                 QUERO ESSE SISTEMA NO MEU ESCRITÓRIO
                 <ArrowRight className="ml-3 h-6 w-6 transition-transform group-hover:translate-x-1" />
               </Button>
-            </a>
           </motion.div>
         </motion.div>
       </div>

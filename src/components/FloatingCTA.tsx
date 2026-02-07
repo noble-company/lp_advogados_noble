@@ -2,22 +2,17 @@ import { useState, useEffect } from "react";
 import { MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { WHATSAPP_CONFIG } from "@/lib/constants";
 import { useTracking } from "@/hooks/useTracking";
-
-const WHATSAPP_LINK = WHATSAPP_CONFIG.getLink('default');
+import { useLeadForm } from "@/hooks/useLeadForm";
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const { trackWhatsAppClick, trackSection } = useTracking();
+  const { trackSection } = useTracking();
+  const { openLeadForm } = useLeadForm();
 
   const handleClick = () => {
-    trackWhatsAppClick({
-      buttonLocation: "floating_cta",
-      messageKey: "default",
-      variant: "floating",
-    });
+    openLeadForm();
   };
 
   useEffect(() => {
@@ -83,16 +78,14 @@ const FloatingCTA = () => {
               </AnimatePresence>
 
               {/* Button */}
-              <a 
-                href={WHATSAPP_LINK} 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <button
                 onClick={handleClick}
+                className="focus:outline-none"
               >
-                <motion.button
+                <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-success to-success/80 shadow-2xl shadow-success/40 hover:shadow-success/60 transition-all"
+                  className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-success to-success/80 shadow-2xl shadow-success/40 hover:shadow-success/60 transition-all cursor-pointer"
                 >
                   {/* Pulse animation */}
                   <span className="absolute inset-0 rounded-full bg-success animate-ping opacity-30" />
@@ -104,8 +97,8 @@ const FloatingCTA = () => {
                   <span className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-white animate-bounce">
                     1
                   </span>
-                </motion.button>
-              </a>
+                </motion.div>
+              </button>
             </div>
           </motion.div>
         )}
@@ -121,23 +114,16 @@ const FloatingCTA = () => {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             className="fixed bottom-0 left-0 right-0 z-50 px-3 pb-3 md:hidden bg-gradient-to-t from-background via-background/95 to-transparent pt-3"
           >
-            <a 
-              href={WHATSAPP_LINK} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="block"
-              onClick={handleClick}
-            >
-              <Button
-                className="btn-noble group h-14 w-full text-sm font-bold text-white shadow-2xl shadow-accent/30"
+            <Button
+                onClick={handleClick}
+                className="btn-noble group h-14 w-full text-sm font-bold text-white shadow-2xl shadow-accent/30 cursor-pointer"
               >
                 <MessageCircle className="mr-1.5 h-4 w-4" />
                 FALAR COM ESPECIALISTA
                 <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
-            </a>
             <p className="mt-1.5 text-center text-[10px] text-foreground/70">
-              ⚡ Resposta em até 5 minutos
+              ⚡ Resposta em até 2 horas
             </p>
           </motion.div>
         )}

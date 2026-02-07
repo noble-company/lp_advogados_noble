@@ -1,10 +1,7 @@
-import { Check, Clock, Users, TrendingUp, AlertCircle, Zap } from "lucide-react";
+import { Check, Clock, Users, TrendingUp, AlertCircle, Zap, Shield } from "lucide-react";
 import { WhatsAppCTAButton } from "./WhatsAppCTAButton";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { WHATSAPP_CONFIG } from "@/lib/constants";
-
-const WHATSAPP_LINK = WHATSAPP_CONFIG.getLink('finalCta');
 
 const FinalCTASection = () => {
   // Countdown timer to end of month
@@ -206,7 +203,7 @@ const FinalCTASection = () => {
             size="lg"
           />
           <p className="mt-4 text-sm text-gray-300">
-            Clique para falar direto no WhatsApp • Resposta em minutos
+            Preencha o formulário rápido • Resposta em até 2 horas
           </p>
         </motion.div>
 
