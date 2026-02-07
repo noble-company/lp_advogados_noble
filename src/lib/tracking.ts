@@ -120,3 +120,4 @@ export function trackPageView(pagePath?: string): void {
   // No need to track again unless it's a virtual page view in SPA
 }
 
+export { LeadData };
