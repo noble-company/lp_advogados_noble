@@ -53,19 +53,17 @@ export function generateEventId(prefix: string = ""): string {
 }
 
 /**
- * Check if Google Tag Manager is configured
+ * Check if Google Tag Manager is configured (hardcoded in index.html)
  */
 function isGTMConfigured(): boolean {
-  const gtmId = import.meta.env.VITE_GTM_ID;
-  return !!gtmId;
+  return typeof window !== "undefined" && !!window.dataLayer;
 }
 
 /**
- * Check if Meta Pixel is configured
+ * Check if Meta Pixel is configured (hardcoded in index.html)
  */
 function isPixelConfigured(): boolean {
-  const pixelId = import.meta.env.VITE_PIXEL_ID;
-  return !!pixelId;
+  return typeof window !== "undefined" && !!window.fbq;
 }
 
 /**
@@ -245,12 +243,7 @@ export function trackEvent(data: {
  * This should be called after client-side tracking for deduplication
  */
 export async function sendToMetaCAPI(payload: MetaCAPIPayload): Promise<void> {
-  const endpoint = import.meta.env.VITE_META_CAPI_ENDPOINT;
-
-  if (!endpoint) {
-    console.warn("Meta CAPI endpoint not configured");
-    return;
-  }
+  const endpoint = "https://webhook.noblecompany.digital/webhook/adv-lp/lead-conversion";
 
   try {
     const response = await fetch(endpoint, {

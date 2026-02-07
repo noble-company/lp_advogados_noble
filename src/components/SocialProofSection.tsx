@@ -1,12 +1,13 @@
 import { Quote, Star, TrendingUp, Users, Award } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { WHATSAPP_CONFIG } from "@/lib/constants";
+import { useLeadForm } from "@/hooks/useLeadForm";
 import { staggerContainerSlowVariants, fadeInUpVariants } from "@/lib/animations";
 import { MediaCarousel } from "./MediaCarousel";
 import { Media } from "./MediaRenderer";
 
 const SocialProofSection = () => {
+  const { openLeadForm } = useLeadForm();
   interface Testimonial {
     text: string;
     name: string;
@@ -223,14 +224,10 @@ const SocialProofSection = () => {
           <p className="mb-6 text-base md:text-lg lg:text-xl font-semibold text-foreground px-4">
             Quer resultados como estes para seu escritório?
           </p>
-          <a
-            href={WHATSAPP_CONFIG.getLink('testimonials')}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
             <Button
               size="lg"
-              className="btn-noble group h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-bold text-white shadow-xl w-full max-w-md mx-auto"
+              onClick={openLeadForm}
+              className="btn-noble group h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-bold text-white shadow-xl w-full max-w-md mx-auto cursor-pointer"
             >
               <span className="mr-2 text-lg md:text-xl">💬</span>
               <span className="hidden sm:inline">CONVERSAR COM ESPECIALISTA</span>
@@ -243,7 +240,6 @@ const SocialProofSection = () => {
                 →
               </motion.span>
             </Button>
-          </a>
         </motion.div>
       </div>
     </section>

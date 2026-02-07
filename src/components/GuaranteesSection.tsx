@@ -1,10 +1,11 @@
 import { Shield, Lock, Award, MessageCircle, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { WHATSAPP_CONFIG } from "@/lib/constants";
+import { useLeadForm } from "@/hooks/useLeadForm";
 import { createIndexedVariant } from "@/lib/animations";
 
 const GuaranteesSection = () => {
+  const { openLeadForm } = useLeadForm();
   const guarantees = [
     {
       number: 1,
@@ -187,21 +188,15 @@ const GuaranteesSection = () => {
               Pronto para começar sem riscos?
             </p>
             <div className="flex justify-center">
-              <a
-                href={WHATSAPP_CONFIG.getLink('guarantees')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full sm:w-auto"
-              >
                 <Button
                   size="lg"
-                  className="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 h-16 sm:h-14 px-4 sm:px-8 text-sm sm:text-lg font-bold shadow-xl w-full sm:w-auto flex flex-wrap items-center justify-center gap-2 sm:gap-2"
+                  onClick={openLeadForm}
+                  className="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 h-16 sm:h-14 px-4 sm:px-8 text-sm sm:text-lg font-bold shadow-xl w-full sm:w-auto flex flex-wrap items-center justify-center gap-2 sm:gap-2 cursor-pointer"
                 >
                   <MessageCircle className="h-5 w-5 sm:h-5 sm:w-5 flex-shrink-0" />
-                  <span className="hidden sm:inline">FALAR COM ESPECIALISTA NO WHATSAPP</span>
-                  <span className="sm:hidden text-center">FALAR COM ESPECIALISTA<br />NO WHATSAPP</span>
+                  <span className="hidden sm:inline">FALAR COM ESPECIALISTA</span>
+                  <span className="sm:hidden text-center">FALAR COM<br />ESPECIALISTA</span>
                 </Button>
-              </a>
             </div>
           </motion.div>
         </motion.div>

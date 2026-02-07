@@ -1,7 +1,6 @@
 import { Check, Star, Shield } from "lucide-react";
 import WhatsAppMockup from "./WhatsAppMockup";
 import { WhatsAppCTAButton } from "./WhatsAppCTAButton";
-import { WHATSAPP_CONFIG } from "@/lib/constants";
 
 const HeroSection = () => {
   const benefits = [
@@ -76,7 +75,7 @@ const HeroSection = () => {
               </div>
               
               <p className="text-xs sm:text-sm text-primary-foreground/70 text-center lg:text-left">
-                👇 Agende uma demonstração gratuita de 15min e veja funcionando ao vivo
+                👇 Preencha o formulário rápido e agende uma demonstração gratuita de 15min
               </p>
             </div>
 
