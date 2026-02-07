@@ -52,7 +52,7 @@ const SocialProofSection = () => {
       text: "Tava em dúvidas no começo se o atendimento ia ser bom, mas me surpreendi. Captei 6 novos clientes no primeiro mês apenas com leads que antes se perderiam. O ROI foi absurdo.",
       name: "Dr. Wellington Alves - WA Advocacia",
       role: "Direito Trabalhista",
-      location: "Nova Mutum/MG",
+      location: "Nova Mutum/MT",
       avatar: "👨‍⚖️",
       rating: 5,
       result: "6 novos clientes/mês",
