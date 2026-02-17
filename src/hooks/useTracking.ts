@@ -17,6 +17,7 @@ import {
   trackToGTM,
   trackToGA4,
   trackToMetaPixel,
+  trackToMetaCAPI,
 } from "../lib/tracking-helpers";
 import { 
   TRACKING_EVENT_NAMES,
@@ -30,7 +31,7 @@ export function useTracking() {
 
   /**
    * Track WhatsApp CTA click
-   * Includes: Meta Pixel (Browser), GTM DataLayer, GA4, Meta CAPI
+   * Includes: GTM DataLayer, GA4, Meta CAPI (NO Meta Pixel)
    */
   const trackWhatsAppClick = useCallback(
     (data: {
@@ -44,21 +45,20 @@ export function useTracking() {
         ...utmParams,
       };
 
-      // Single consolidated tracking (legacy trackWhatsAppLib removed to prevent double firing)
-      trackToAllPlatforms({
-        gtmEventName: TRACKING_EVENT_NAMES.WHATSAPP_CLICK,
-        ga4EventName: 'contact',
-        pixelEventName: 'Contact',
-        metaCAPIEventName: META_CAPI_EVENT_NAMES.CONTACT,
+      const eventData = {
+        button_location: data.buttonLocation,
+        message_key: data.messageKey,
+        variant: data.variant,
+        content_name: `WhatsApp - ${data.messageKey}`,
+        content_category: 'whatsapp_click',
+        ...contextData,
+      };
+
+      // Track to GTM, GA4, and CAPI only (Pixel removed for better privacy)
+      trackToGTM(TRACKING_EVENT_NAMES.WHATSAPP_CLICK, eventData);
+      trackToGA4('contact', eventData);
+      trackToMetaCAPI(META_CAPI_EVENT_NAMES.CONTACT, eventData, {
         eventId,
-        contentName: `WhatsApp - ${data.messageKey}`,
-        contentCategory: 'whatsapp_click',
-        eventData: {
-          button_location: data.buttonLocation,
-          message_key: data.messageKey,
-          variant: data.variant,
-          ...contextData,
-        },
         utmParams: utmWithDefaults,
       });
 
@@ -69,7 +69,8 @@ export function useTracking() {
 
   /**
    * Track form events with complete tracking stack
-   * Includes: Meta Pixel (Browser), GTM DataLayer, GA4, Meta CAPI
+   * Form Submit: GTM, GA4, Meta CAPI only (NO Meta Pixel)
+   * Other events: GTM, GA4, Meta Pixel
    */
   const trackFormEvent = useCallback(
     (
@@ -96,29 +97,31 @@ export function useTracking() {
         return;
       }
 
-      // Full tracking on form submission (legacy trackFormLib removed to prevent double firing)
+      // Full tracking on form submission (Pixel removed - GTM, GA4, CAPI only)
       if (action === "submit") {
         const eventId = generateEventId("lead_");
 
-        trackToAllPlatforms({
-          gtmEventName: TRACKING_EVENT_NAMES.FORM_SUBMIT,
-          ga4EventName: 'generate_lead',
-          pixelEventName: 'Lead',
-          metaCAPIEventName: META_CAPI_EVENT_NAMES.LEAD,
+        const eventData = {
+          form_name: formName,
+          lead_email: formData?.email || '',
+          lead_phone: formData?.phone || '',
+          content_name: 'Contact Form Submission',
+          content_category: 'lead_form',
+        };
+
+        const leadData: LeadData = {
+          name: formData?.name || '',
+          email: formData?.email || '',
+          phone: formData?.phone || '',
+          instagram: formData?.instagram || '',
+        };
+
+        // Track to GTM, GA4, and CAPI only (Pixel removed for better privacy)
+        trackToGTM(TRACKING_EVENT_NAMES.FORM_SUBMIT, eventData);
+        trackToGA4('generate_lead', eventData);
+        trackToMetaCAPI(META_CAPI_EVENT_NAMES.LEAD, eventData, {
           eventId,
-          contentName: 'Contact Form Submission',
-          contentCategory: 'lead_form',
-          eventData: {
-            form_name: formName,
-            lead_email: formData?.email || '',
-            lead_phone: formData?.phone || '',
-          },
-          leadData: {
-            name: formData?.name || '',
-            email: formData?.email || '',
-            phone: formData?.phone || '',
-            instagram: formData?.instagram || '',
-          },
+          leadData,
           utmParams: utmWithDefaults,
         });
       }
@@ -128,7 +131,8 @@ export function useTracking() {
 
   /**
    * Track calculator interaction
-   * Includes: Meta Pixel (Browser), GTM DataLayer, GA4, Meta CAPI on CTA click
+   * CTA Click: GTM, GA4, Meta CAPI only (NO Meta Pixel)
+   * Other events: GTM, GA4, Meta Pixel
    */
   const trackCalculatorInteraction = useCallback(
     (data: {
@@ -152,23 +156,23 @@ export function useTracking() {
         return;
       }
 
-      // Full tracking on CTA click (legacy trackCalculatorLib removed to prevent double firing)
+      // Full tracking on CTA click (Pixel removed - GTM, GA4, CAPI only)
       if (data.action === "cta_click") {
         const eventId = generateEventId("calc_");
 
-        trackToAllPlatforms({
-          gtmEventName: TRACKING_EVENT_NAMES.CALCULATOR_CTA_CLICK,
-          ga4EventName: 'begin_checkout',
-          pixelEventName: 'InitiateCheckout',
-          metaCAPIEventName: META_CAPI_EVENT_NAMES.INITIATE_CHECKOUT,
-          eventId,
-          contentName: 'ROI Calculator CTA',
-          contentCategory: 'calculator',
+        const eventData = {
+          source: "roi_calculator",
+          content_name: 'ROI Calculator CTA',
+          content_category: 'calculator',
           value: data.calculatedValues?.monthly_savings || 0,
-          eventData: {
-            source: "roi_calculator",
-            ...data.calculatedValues,
-          },
+          ...data.calculatedValues,
+        };
+
+        // Track to GTM, GA4, and CAPI only (Pixel removed for better privacy)
+        trackToGTM(TRACKING_EVENT_NAMES.CALCULATOR_CTA_CLICK, eventData);
+        trackToGA4('begin_checkout', eventData);
+        trackToMetaCAPI(META_CAPI_EVENT_NAMES.INITIATE_CHECKOUT, eventData, {
+          eventId,
           utmParams: utmWithDefaults,
         });
       }
